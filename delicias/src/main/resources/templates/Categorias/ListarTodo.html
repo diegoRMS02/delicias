@@ -5,13 +5,14 @@
     <title>Listado de Categorías</title>
   </head>
   <body>
+    <a th:href="@{/categoria/agregar}">Create Nueva Pelicula</a>
+
     <h1>Listado de Categorías</h1>
     <table>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Nombre</th>
-          <th>Descripción</th>
+          <th>Tipo</th>
         </tr>
       </thead>
       <tbody>
@@ -25,8 +26,19 @@
         <th:block th:each="categoria : ${listaCategorias}">
           <tr>
             <td th:text="${categoria.idCategoria}"></td>
-            <td th:text="${categoria.nombre}"></td>
-            <td th:text="${categoria.descripcion}"></td>
+            <td th:text="${categoria.tipoCategoria}"></td>
+            <td>
+              <a
+                th:href="@{/categoria/actualizar/{id}(id=${categoria.idCategoria})}"
+                >Actualizar</a
+              >
+            </td>
+            <td>
+              <a
+                th:href="@{/categoria/eliminar/{id}(id=${categoria.idCategoria})}"
+                >Eliminar</a
+              >
+            </td>
           </tr>
         </th:block>
       </tbody>

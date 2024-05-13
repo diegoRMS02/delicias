@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgregarCategoria</title>
+  </head>
+  <body>
+    <h1>Editar Nueva Categoría</h1>
+    <form
+      action="#"
+      th:action="@{/categoria/guardar}"
+      th:object="${categoria}"
+      method="post"
+    >
+      <label>ID:</label>
+      <input type="text" th:field="*{IdCategoria}" readonly="readonly" />
+      <label>tipo:</label>
+      <input type="text" th:field="*{tipoCategoria}" required /><br />
+      <button type="submit">Guardar</button>
+    </form>
+  </body>
+</html>

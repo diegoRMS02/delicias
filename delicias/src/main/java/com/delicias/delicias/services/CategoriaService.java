@@ -30,8 +30,11 @@ public class CategoriaService {
         return categoriaRepository.save(categoria);
     }
 
-    public Categoria actualizarCategoria(Categoria categoria) {
-        return categoriaRepository.save(categoria);
+    public Categoria actualizarCategoria(Categoria categoriaActualizar) {
+        Categoria categoriaActual = categoriaRepository.findById(categoriaActualizar.getIdCategoria()).get();
+	    categoriaActual.setTipoCategoria(categoriaActualizar.getTipoCategoria());
+	    Categoria películaActualizado = categoriaRepository.save(categoriaActual);
+	    return películaActualizado;
     }
 
     public void eliminarCategoriaPorId(Integer id) {
