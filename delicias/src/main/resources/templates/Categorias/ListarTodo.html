@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Listado de Categorías</title>
+  </head>
+  <body>
+    <h1>Listado de Categorías</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Verificar si la lista de categorías está vacía -->
+        <th:block th:if="${#lists.isEmpty(listaCategorias)}">
+          <tr>
+            <td colspan="3">No hay categorías disponibles.</td>
+          </tr>
+        </th:block>
+        <!-- Iterar sobre la lista de categorías si no está vacía -->
+        <th:block th:each="categoria : ${listaCategorias}">
+          <tr>
+            <td th:text="${categoria.idCategoria}"></td>
+            <td th:text="${categoria.nombre}"></td>
+            <td th:text="${categoria.descripcion}"></td>
+          </tr>
+        </th:block>
+      </tbody>
+    </table>
+  </body>
+</html>
