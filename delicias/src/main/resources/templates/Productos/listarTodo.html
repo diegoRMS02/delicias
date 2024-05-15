@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lista de Productos</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+        color: #333;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+      }
+
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+
+      .actions {
+        text-align: center;
+      }
+
+      .actions a {
+        margin-right: 10px;
+        color: #333;
+        text-decoration: none;
+      }
+
+      .actions a:hover {
+        color: #007bff;
+      }
+
+      .add-button {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+
+      .add-button a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .add-button a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lista de Productos</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Imagen</th>
+          <th>Descuento</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="producto : ${productos}">
+          <td th:text="${producto.nombreProducto}"></td>
+          <td th:text="${producto.descripcionProducto}"></td>
+          <td th:text="${producto.precioProducto}"></td>
+          <td>
+            <img th:src="${producto.imagenProducto}" width="100" height="100" />
+          </td>
+          <td th:text="${producto.descuentoProducto}"></td>
+          <td class="actions">
+            <a
+              th:href="@{/productos/actualizar/{id}(id=${producto.idProducto})}"
+              >Editar</a
+            >
+            <a
+              th:href="@{/productos/eliminar/{id}(id=${producto.idProducto})}"
+              onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="add-button">
+      <a href="/delicias/productos/nuevo">Agregar Nuevo Producto</a>
+    </div>
+  </body>
+</html>

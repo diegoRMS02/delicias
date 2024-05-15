@@ -1,10 +1,15 @@
 package com.delicias.delicias.models;
 
+
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +20,15 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
     private Integer idCategoria;
+
     @Column(name = "tipo_categoria")
     private String tipoCategoria;
+
+    @ManyToMany(mappedBy = "categorias")
+    private Set<Producto> productos = new HashSet<>();
+
+    public Set<Producto> getProductos() {
+        return productos;
+    }
+    // Constructor, getters y setters
 }

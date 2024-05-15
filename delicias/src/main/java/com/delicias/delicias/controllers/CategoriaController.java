@@ -60,6 +60,7 @@ public class CategoriaController {
     @RequestMapping(value="/eliminar/{id}")
     public String eliminarCategoria(@PathVariable("id") Integer id) {
         categoriaService.eliminarCategoriaPorId(id);
-        return "redirect:/categoria/listarTodo";
+        return "redirect:/categoria/listarTodo"; 
     }
+    
 }

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editar Categoría</title>
+    <title>Agregar/Editar Producto</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -12,7 +11,7 @@
         background-color: #f4f4f4;
       }
 
-      h1 {
+      h2 {
         text-align: center;
         margin-top: 20px;
         color: #333;
@@ -33,7 +32,8 @@
         color: #333;
       }
 
-      input[type="text"] {
+      input[type="text"],
+      textarea {
         width: 100%;
         padding: 8px;
         margin-bottom: 10px;
@@ -42,9 +42,9 @@
         box-sizing: border-box;
       }
 
-      input[type="text"][readonly] {
-        background-color: #f4f4f4;
-        cursor: not-allowed;
+      textarea {
+        height: 100px;
+        resize: vertical;
       }
 
       button[type="submit"] {
@@ -63,17 +63,35 @@
     </style>
   </head>
   <body>
-    <h1>Editar Categoría</h1>
+    <h2>Agregar/Editar Producto</h2>
     <form
-      action="#"
-      th:action="@{/categoria/guardar}"
-      th:object="${categoria}"
+      th:object="${producto}"
+      th:action="@{/productos/guardar}"
       method="post"
     >
-      <label>ID:</label>
-      <input type="text" th:field="*{idCategoria}" readonly="readonly" />
-      <label>Tipo:</label>
-      <input type="text" th:field="*{tipoCategoria}" required /><br />
+      <input type="hidden" th:field="*{idProducto}" />
+      <label for="nombreProducto">Nombre:</label>
+      <input type="text" id="nombreProducto" th:field="*{nombreProducto}" />
+      <br />
+      <label for="descripcionProducto">Descripción:</label>
+      <textarea
+        id="descripcionProducto"
+        th:field="*{descripcionProducto}"
+      ></textarea>
+      <br />
+      <label for="precioProducto">Precio:</label>
+      <input type="text" id="precioProducto" th:field="*{precioProducto}" />
+      <br />
+      <label for="imagenProducto">Imagen:</label>
+      <input type="text" id="imagenProducto" th:field="*{imagenProducto}" />
+      <br />
+      <label for="descuentoProducto">Descuento:</label>
+      <input
+        type="text"
+        id="descuentoProducto"
+        th:field="*{descuentoProducto}"
+      />
+      <br />
       <button type="submit">Guardar</button>
     </form>
   </body>
